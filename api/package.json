@@ -1,0 +1,12 @@
+{
+  "name": "phillrem-api",
+  "version": "1.0.0",
+  "main": "src/index.js",
+  "author": "axelo",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "express": "^4.16.2",
+    "superagent": "^3.8.2"
+  }
+}
