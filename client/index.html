@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet">
+    <title>Phillip</title>
+</head>
+<body>
+    <div class="main-container">
+        <div class="icon-container icon-container--flex">
+            <div class="button" onclick="sendButton('Source');">
+                <span class="icon--text">SOURCE</span>
+                <img class="icon--margin" src="images/input.svg"/>
+            </div>
+            <div class="button" onclick="sendButton('WatchTV');">
+                <span class="icon--text">TV</span>
+                <img class="icon--margin" src="images/tv.svg"/>
+            </div>
+        </div>
+        <div class="icon-container icon-container--flex">
+            <div class="button" onclick="sendButton('Home');">
+                <span class="icon--text">HOME</span>
+                <img class="icon--margin" src="images/home.svg"/>
+            </div>
+            <div class="button" onclick="sendButton('Info');">
+                <span class="icon--text">INFO</span>
+                <img class="icon--margin" src="images/info.svg"/>
+            </div>
+        </div>
+
+        <div class="arrow-menu">
+            <div class="icon-container">
+                <img class="icon" src="images/arrow-up.svg"/> 
+            </div>
+            <div class="icon-container icon-container--flex">
+                <img class="icon" src="images/arrow-left.svg"/>
+                <span class="icon">OK</span>
+                <img class="icon" src="images/arrow-right.svg"/> 
+            </div>
+            <div class="icon-container">
+                <img class="icon" src="images/arrow-down.svg"/> 
+            </div>
+        </div>
+
+        <div class="icon-container icon-container--flex">
+            <div>
+                <span>CH</span>
+                <img class="icon--margin" src="images/remove.svg"/>
+            </div>
+            <div>
+                <span>CH</span>
+                <img class="icon--margin" src="images/add.svg"/>
+            </div>
+        </div>
+    </div> 
+
+    <div class="secondary-container">
+        <div class="color-btn-container">
+            <div class="btn red-btn"></div>
+            <div class="btn green-btn"></div>
+            <div class="btn yellow-btn"></div>
+            <div class="btn blue-btn"></div>
+        </div>
+        <div class="digits-container">
+            <span class="digit">1</span><span class="digit">2</span><span class="digit">3</span>
+            <span class="digit">4</span><span class="digit">5</span><span class="digit">6</span>
+            <span class="digit">7</span><span class="digit">8</span><span class="digit">9</span>
+            <span class="digit">SUB</span><span class="digit">0</span><span class="digit">TEXT</span>
+        </div>
+        <div class="icon-container">
+            <span class="icon--text">RETURN</span>
+            <img class="icon--margin" src="images/return.svg"/>
+        </div>
+    </div>
+
+    <script src="functions.js"></script>
+</body>
+</html>
