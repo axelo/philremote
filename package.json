@@ -1,0 +1,12 @@
+{
+  "name": "philremote",
+  "version": "1.0.0",
+  "main": "api/src/index.js",
+  "repository": "https://github.com/axelo/philremote.git",
+  "author": "us",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "start": "node ."
+  }
+}
