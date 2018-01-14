@@ -1,8 +1,15 @@
 const express = require("express");
 const request = require("superagent");
 const path = require("path");
+const dns = require("dns");
+const os = require("os");
 
 const app = express();
+
+const getLocalIpAddress = () =>
+    new Promise(resolve =>
+        dns.lookup(os.hostname(), (err, addr) =>
+            resolve(addr)));
 
 const promiseSerial = funcs =>
     funcs.reduce((promise, getPromise) =>
@@ -60,15 +67,16 @@ const sendButtonToTv = (tvIpAddr, buttonId) =>
             });
     });
 
+const nocacheMiddleware = (req, res, next) => {
+    res.header("Cache-Control", "private, no-cache, no-store, must-revalidate");
+    res.header("Expires", "-1");
+    res.header("Pragma", "no-cache");
+    next();
+}
+
 app.use("/", express.static(path.join(__dirname, "../../client")));
 
-app.use(function (req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    next();
-});
-
-app.get("/remote/:button", (req, res) => {
+app.get("/api/remote/:button", nocacheMiddleware, (req, res) => {
     const buttonIndex = buttons.indexOf(req.params.button);
 
     if (buttonIndex < 0) {
@@ -85,6 +93,13 @@ app.get("/remote/:button", (req, res) => {
         })
 });
 
-const listener = app.listen(5000, (opts) => {
-    console.log("Server started at http://localhost:" + listener.address().port);
+const serverPort = process.env.PORT || "5000";
+
+const listener = app.listen(serverPort, (opts) => {
+    getLocalIpAddress().then(localIpAddr => {
+        console.log("Server started at",
+            "http://localhost:" + listener.address().port,
+            "alternative",
+            "http://" + localIpAddr + ":" + listener.address().port);
+    })
 });
