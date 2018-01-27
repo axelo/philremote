@@ -3,8 +3,12 @@ const request = require("superagent");
 const path = require("path");
 const dns = require("dns");
 const os = require("os");
+const ssdp = require("node-ssdp");
+const debounce = require("lodash.debounce");
 
 const app = express();
+
+let knownTvIpAddress;
 
 const getLocalIpAddress = () =>
     new Promise(resolve =>
@@ -48,6 +52,29 @@ const buttons = [
     "Online", // Aspect ratio
 ];
 
+const searchForTvs = () =>
+    new Promise(resolve => {
+        const address = {};
+        const client = new ssdp.Client();
+        const tvServerName = "IPI/1.0 UPnP/1.0 DLNADOC/1.50";
+
+        const done = debounce(() => {
+            resolve(Object.keys(address));
+        }, 250);
+
+        client.on("response", (headers, _statusCode, rinfo) => {
+            if (headers.SERVER === tvServerName) {
+                address[rinfo.address] = rinfo.address;
+            }
+
+            done();
+        });
+
+        client.search("ssdp:all");
+
+        done();
+    });
+
 const sendButtonToTv = (tvIpAddr, buttonId) =>
     new Promise((resolve, reject) => {
         console.info(`Sending button ${buttonId} to tv`);
@@ -83,14 +110,28 @@ app.get("/api/remote/:button", nocacheMiddleware, (req, res) => {
         return res.status(404).send("Unknown button");
     }
 
-    sendButtonToTv("192.168.1.119", buttons[buttonIndex])
-        .then(() => {
-            res.status(200).send(req.params.button + " sent to tv");
-        })
-        .catch(err => {
-            console.info("err", err);
-            res.status(503).send("Something went wrong, try again");
-        })
+    const getTvIpAddress = knownTvIpAddress
+        ? Promise.resolve(knownTvIpAddress)
+        : searchForTvs().then(foundTvIps =>
+            knownTvIpAddress = foundTvIps.length > 0
+                ? foundTvIps[0]
+                : null
+        );
+
+    getTvIpAddress.then(ipAddress => {
+        if (!ipAddress) {
+            return res.status(503).send("No compatible tv available");
+        }
+
+        return sendButtonToTv(ipAddress, buttons[buttonIndex])
+            .then(() => {
+                res.status(200).send(req.params.button + " sent to tv");
+            })
+            .catch(err => {
+                console.error("err", err);
+                res.status(500).send("Something went wrong, try again");
+            })
+    });
 });
 
 const serverPort = process.env.PORT || "5000";
