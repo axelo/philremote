@@ -50,6 +50,7 @@ const buttons = [
     "Subtitle",
     "Find",
     "Online", // Aspect ratio
+    "Back"
 ];
 
 const searchForTvs = () =>

@@ -12,11 +12,10 @@ body {
 }
 
 .secondary-container {
+    margin: 20px auto;
     max-width: 320px;
     height: 100vh;
-    max-width: 320px;
 }
-
 
 .color-btn-container,
 .digits-container {
