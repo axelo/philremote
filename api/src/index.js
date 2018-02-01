@@ -12,7 +12,7 @@ let knownTvIpAddress;
 
 const getLocalIpAddress = () =>
     new Promise(resolve =>
-        dns.lookup(os.hostname(), (err, addr) =>
+        dns.lookup(os.hostname(), (_err, addr) =>
             resolve(addr)));
 
 const promiseSerial = funcs =>
@@ -21,7 +21,10 @@ const promiseSerial = funcs =>
             getPromise().then(Array.prototype.concat.bind(result))),
         Promise.resolve([]))
 
-const buttons = [
+// Example sequence to select 'Guide':
+// /WatchTV/Confirm/Home/CursorRight/CursorRight/CursorRight/Confirm
+
+const BUTTONS = [
     "RedColour",
     "GreenColour",
     "YellowColour",
@@ -53,6 +56,9 @@ const buttons = [
     "Back"
 ];
 
+const BUTTON_SEQ_SEND_DELAY = 900;
+const SEARCH_TV_TIMEOUT = 1000;
+
 const searchForTvs = () =>
     new Promise(resolve => {
         const address = {};
@@ -61,7 +67,7 @@ const searchForTvs = () =>
 
         const done = debounce(() => {
             resolve(Object.keys(address));
-        }, 250);
+        }, SEARCH_TV_TIMEOUT);
 
         client.on("response", (headers, _statusCode, rinfo) => {
             if (headers.SERVER === tvServerName) {
@@ -75,6 +81,15 @@ const searchForTvs = () =>
 
         done();
     });
+
+const sendButtonsToTv = (tvIpAddr, buttonIds) =>
+    promiseSerial(buttonIds.map((id, i) => [
+        () => sendButtonToTv(tvIpAddr, id),
+        () => i === buttonIds.length - 1
+            ? Promise.resolve()
+            : new Promise(resolve => setTimeout(resolve, BUTTON_SEQ_SEND_DELAY))
+    ]).reduce((flatArray, pair) =>
+        flatArray.concat(pair), []));
 
 const sendButtonToTv = (tvIpAddr, buttonId) =>
     new Promise((resolve, reject) => {
@@ -104,12 +119,23 @@ const nocacheMiddleware = (req, res, next) => {
 
 app.use("/", express.static(path.join(__dirname, "../../client")));
 
-app.get("/api/remote/:button", nocacheMiddleware, (req, res) => {
-    const buttonIndex = buttons.indexOf(req.params.button);
+app.get("/api/remote/(:button)*", nocacheMiddleware, (req, res) => {
+    const inputButtons = req.params[0].length > 0
+        ? (req.params.button + req.params[0]).split("/")
+        : [req.params.button];
 
-    if (buttonIndex < 0) {
-        return res.status(404).send("Unknown button");
+    const buttonIndices = inputButtons.map(button => BUTTONS.indexOf(button));
+
+    const unknownButtons = buttonIndices.map((i, j) => i < 0
+        ? inputButtons[j]
+        : null)
+        .filter(b => b !== null);
+
+    if (unknownButtons.length > 0) {
+        return res.status(404).send("Unknown button(s) " + unknownButtons.join(" "));
     }
+
+    const buttons = buttonIndices.map(i => BUTTONS[i]);
 
     const getTvIpAddress = knownTvIpAddress
         ? Promise.resolve(knownTvIpAddress)
@@ -124,9 +150,9 @@ app.get("/api/remote/:button", nocacheMiddleware, (req, res) => {
             return res.status(503).send("No compatible tv available");
         }
 
-        return sendButtonToTv(ipAddress, buttons[buttonIndex])
+        return sendButtonsToTv(ipAddress, buttons)
             .then(() => {
-                res.status(200).send(req.params.button + " sent to tv");
+                res.status(200).send(buttons.join(" ") + " sent to tv");
             })
             .catch(err => {
                 console.error("err", err);
