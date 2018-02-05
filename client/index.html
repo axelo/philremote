@@ -15,14 +15,18 @@
     <div id="main-container">
 
         <div id="main-content">
-            <div class="icon-container icon-container--flex">
+            <div class="icon-container icon-container--flex icon-container--bg">
+                <div class="button" onclick="sendButton('WatchTV');">
+                    <span class="icon--text">TV</span>
+                    <img class="icon--margin" src="images/tv.svg" />
+                </div>
                 <div class="button" onclick="sendButton('Source');">
                     <span class="icon--text">SOURCE</span>
                     <img class="icon--margin" src="images/input.svg" />
                 </div>
-                <div class="button" onclick="sendButton('WatchTV');">
-                    <span class="icon--text">TV</span>
-                    <img class="icon--margin" src="images/tv.svg" />
+                <div class="button" onclick="sendButton('Home');">
+                    <span class="icon--text">HOME</span>
+                    <img class="icon--margin" src="images/home.svg" />
                 </div>
             </div>
 
@@ -30,39 +34,42 @@
                 <div class="icon-container">
                     <img class="icon" src="images/arrow-up.svg" onclick="sendButton('CursorUp');" />
                 </div>
-                <div class="icon-container icon-container--flex">
+                <div class="icon-container">
                     <img class="icon" src="images/arrow-left.svg" onclick="sendButton('CursorLeft');" />
-                    <span class="icon" onclick="sendButton('Confirm');">OK</span>
+                    <span class="icon icon--margin" onclick="sendButton('Confirm');">OK</span>
                     <img class="icon" src="images/arrow-right.svg" onclick="sendButton('CursorRight');" />
                 </div>
                 <div class="icon-container">
                     <img class="icon" src="images/arrow-down.svg" onclick="sendButton('CursorDown');" />
                 </div>
             </div>
-            <div class="icon-container icon-container--flex">
-                <div class="button" onclick="sendButton('Home');">
-                    <span class="icon--text">HOME</span>
-                    <img class="icon--margin" src="images/home.svg" />
+
+            <div class="lower-icon-container icon-container--bg">
+                <div class="icon-container icon-container--flex">
+                    <div class="button" onclick="sendButton('WatchTV/Confirm/Home/CursorRight/CursorRight/CursorRight/Confirm');">
+                        <span class="icon--text">GUIDE</span>
+                        <img class="icon--margin" src="images/guide.svg" />
+                    </div>
+                    <div class="button" onclick="sendButton('Info');">
+                        <span class="icon--text">INFO</span>
+                        <img class="icon--margin" src="images/info.svg" />
+                    </div>
                 </div>
-                <div class="button" onclick="sendButton('Info');">
-                    <span class="icon--text">INFO</span>
-                    <img class="icon--margin" src="images/info.svg" />
-                </div>
-            </div>
-            <div class="icon-container icon-container__channel">
-                <div onclick="sendButton('ChannelStepDown');">
-                    <span>CH</span>
-                    <img class="icon--margin" src="images/remove.svg" />
-                </div>
-                <div onclick="sendButton('ChannelStepUp');">
-                    <span>CH</span>
-                    <img class="icon--margin" src="images/add.svg" />
+                <div class="icon-container icon-container--flex">
+                    <div class="button" onclick="sendButton('ChannelStepDown');">
+                        <span>CH</span>
+                        <img class="icon--margin" src="images/remove.svg" />
+                    </div>
+                    <div class="button" onclick="sendButton('ChannelStepUp');">
+                        <span>CH</span>
+                        <img class="icon--margin" src="images/add.svg" />
+                    </div>
                 </div>
             </div>
         </div>
 
         <div id="secondary-container">
-            <div class="color-btn-container">
+            <div class="color-btn-container icon-container--bg icon-container--height">
                 <div class="btn red-btn" onclick="sendButton('RedColour');"></div>
                 <div class="btn green-btn" onclick="sendButton('GreenColour');"></div>
                 <div class="btn yellow-btn" onclick="sendButton('YellowColour');"></div>
@@ -84,16 +91,20 @@
             </div>
             <div class="icon-container" onclick="sendButton('Back');">
                 <span class="icon--text">RETURN</span>
-                <img class="icon--margin" src="images/return.svg"/>
+                <img class="icon--margin" src="images/return.svg" />
+            </div>
+            <div class="icon-container icon-container--bg icon-container--padding" onclick="sendButton('Standby');">
+                <span class="icon--text">SHUT DOWN</span>
+                <img class="icon--margin" src="images/shut-down.svg" />
             </div>
         </div>
 
         <div class="menu">
             <div class="menu__choice menu__choice--active" id="menu-view" onclick="selectView('menu-view');">
-                <img class="icon" src="images/gamepad.svg" />
+                <img class="" src="images/gamepad.svg" />
             </div>
             <div class="menu__choice" id="digits-view" onclick="selectView('digits-view');">
-                <img class="icon" src="images/dialpad.svg" />
+                <img src="images/dialpad.svg" />
             </div>
         </div>
     </div>

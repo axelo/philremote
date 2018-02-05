@@ -1,7 +1,20 @@
 
 var sendButton = function (button){
+
+    var send = true;
+
+    if (button === 'Standby'){
+        if (!confirm('Do you really want to shut down?')) {
+            send = false;
+        } 
+    } 
+    
+    if (!send){
+        return;
+    }
+
     fetch('api/remote/' + button).then(function(response){
-        console.log('hrjhrhjbrjk');
+
     })
 }
 
@@ -14,7 +27,7 @@ var selectView = function (view){
     var digitsView = document.getElementById('digits-view');
 
     if (view === 'menu-view'){
-        mainContainer.style.display="block";
+        mainContainer.style.display="flex";
         secondaryContainer.style.display="none";
         
         menuView.classList.add('menu__choice--active');
@@ -22,7 +35,7 @@ var selectView = function (view){
     }
 
     if (view === 'digits-view'){
-        secondaryContainer.style.display="block";
+        secondaryContainer.style.display="flex";
         mainContainer.style.display="none";
 
         digitsView.classList.add('menu__choice--active');
