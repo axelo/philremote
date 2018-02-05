@@ -25,6 +25,7 @@ const promiseSerial = funcs =>
 // /WatchTV/Confirm/Home/CursorRight/CursorRight/CursorRight/Confirm
 
 const BUTTONS = [
+    "Standby",
     "RedColour",
     "GreenColour",
     "YellowColour",
