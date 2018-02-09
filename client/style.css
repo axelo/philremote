@@ -127,6 +127,10 @@ body {
     font-size: 0.9rem;
 }
 
+.icon--red {
+    color: #cc4750;
+}
+
 .icon-container--flex {
     justify-content: space-around;
 }
