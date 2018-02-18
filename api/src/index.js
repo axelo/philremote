@@ -98,7 +98,7 @@ const sendButtonToTv = (tvIpAddr, buttonId) =>
 
         request("POST", `http://${tvIpAddr}:1925/1/input/key`)
             .set("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:57.0) Gecko/20100101 Firefox/57.0")
-            .retry()
+            .retry(3)
             .send({
                 key: buttonId
             })
@@ -117,6 +117,11 @@ const nocacheMiddleware = (req, res, next) => {
     res.header("Pragma", "no-cache");
     next();
 }
+
+searchForTvs().then(foundTvIps =>
+    knownTvIpAddress = foundTvIps.length > 0
+        ? foundTvIps[0]
+        : null);
 
 app.use("/", express.static(path.join(__dirname, "../../client")));
 
