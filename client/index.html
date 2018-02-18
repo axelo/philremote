@@ -13,18 +13,17 @@
 
 <body>
     <div id="main-container">
-
         <div id="main-content">
-            <div class="icon-container icon-container--flex icon-container--bg">
-                <div class="button" onclick="sendButton('WatchTV');">
+            <div class="icon-container icon-container--flex icon-container--bg icon-container--top">
+                <div class="button flex--grow" onclick="sendButton(this, 'WatchTV');">
                     <span class="icon--text">TV</span>
                     <img class="icon--margin" src="images/tv.svg" />
                 </div>
-                <div class="button" onclick="sendButton('Source');">
+                <div class="button flex--grow" onclick="sendButton(this, 'Source');">
                     <span class="icon--text">SOURCE</span>
                     <img class="icon--margin" src="images/input.svg" />
                 </div>
-                <div class="button" onclick="sendButton('Home');">
+                <div class="button flex--grow" onclick="sendButton(this, 'Home');">
                     <span class="icon--text">HOME</span>
                     <img class="icon--margin" src="images/home.svg" />
                 </div>
@@ -32,68 +31,64 @@
 
             <div class="arrow-menu">
                 <div class="icon-container">
-                    <img class="icon" src="images/arrow-up.svg" onclick="sendButton('CursorUp');" />
+                    <img class="icon icon--rounded" src="images/arrow-up.svg" onclick="sendButton(this, 'CursorUp');" />
                 </div>
                 <div class="icon-container">
-                    <img class="icon" src="images/arrow-left.svg" onclick="sendButton('CursorLeft');" />
-                    <span class="icon icon--margin" onclick="sendButton('Confirm');">OK</span>
-                    <img class="icon" src="images/arrow-right.svg" onclick="sendButton('CursorRight');" />
+                    <img class="icon icon--rounded" src="images/arrow-left.svg" onclick="sendButton(this, 'CursorLeft');" />
+                    <span class="icon icon--margin icon--rounded" onclick="sendButton(this, 'Confirm');">OK</span>
+                    <img class="icon icon--rounded" src="images/arrow-right.svg" onclick="sendButton(this, 'CursorRight');" />
                 </div>
                 <div class="icon-container">
-                    <img class="icon" src="images/arrow-down.svg" onclick="sendButton('CursorDown');" />
+                    <img class="icon icon--rounded" src="images/arrow-down.svg" onclick="sendButton(this, 'CursorDown');" />
                 </div>
             </div>
 
             <div class="lower-icon-container icon-container--bg">
-                <div class="icon-container icon-container--flex">
-                    <div class="button" onclick="sendButton('WatchTV/Confirm/Home/CursorRight/CursorRight/CursorRight/Confirm');">
-                        <span class="icon--text">GUIDE</span>
-                        <img class="icon--margin" src="images/guide.svg" />
-                    </div>
-                    <div class="button" onclick="sendButton('Info');">
-                        <span class="icon--text">INFO</span>
-                        <img class="icon--margin" src="images/info.svg" />
-                    </div>
+                <div class="button button--width" onclick="sendButton(this, 'WatchTV/Confirm/Home/CursorRight/CursorRight/CursorRight/Confirm');">
+                    <span class="icon--text">GUIDE</span>
+                    <img class="icon--margin" src="images/guide.svg" />
                 </div>
-                <div class="icon-container icon-container--flex">
-                    <div class="button" onclick="sendButton('ChannelStepDown');">
-                        <span>CH</span>
-                        <img class="icon--margin" src="images/remove.svg" />
-                    </div>
-                    <div class="button" onclick="sendButton('ChannelStepUp');">
-                        <span>CH</span>
-                        <img class="icon--margin" src="images/add.svg" />
-                    </div>
+                <div class="button button--width" onclick="sendButton(this, 'Info');">
+                    <span class="icon--text">INFO</span>
+                    <img class="icon--margin" src="images/info.svg" />
+                </div>
+                <div class="button button--width" onclick="sendButton(this, 'ChannelStepDown');">
+                    <span>CH</span>
+                    <img class="icon--margin" src="images/remove.svg" />
+                </div>
+                <div class="button button--width" onclick="sendButton(this, 'ChannelStepUp');">
+                    <span>CH</span>
+                    <img class="icon--margin" src="images/add.svg" />
                 </div>
             </div>
         </div>
 
         <div id="secondary-container">
             <div class="color-btn-container icon-container--bg icon-container--height">
-                <div class="btn red-btn" onclick="sendButton('RedColour');"></div>
-                <div class="btn green-btn" onclick="sendButton('GreenColour');"></div>
-                <div class="btn yellow-btn" onclick="sendButton('YellowColour');"></div>
-                <div class="btn blue-btn" onclick="sendButton('BlueColour');"></div>
+                <div class="btn red-btn" onclick="sendButton(this, 'RedColour');"></div>
+                <div class="btn green-btn" onclick="sendButton(this, 'GreenColour');"></div>
+                <div class="btn yellow-btn" onclick="sendButton(this, 'YellowColour');"></div>
+                <div class="btn blue-btn" onclick="sendButton(this, 'BlueColour');"></div>
             </div>
             <div class="digits-container">
-                <span class="digit" onclick="sendButton('Digit1');">1</span>
-                <span class="digit" onclick="sendButton('Digit2');">2</span>
-                <span class="digit" onclick="sendButton('Digit3');">3</span>
-                <span class="digit" onclick="sendButton('Digit4');">4</span>
-                <span class="digit" onclick="sendButton('Digit5');">5</span>
-                <span class="digit" onclick="sendButton('Digit6');">6</span>
-                <span class="digit" onclick="sendButton('Digit7');">7</span>
-                <span class="digit" onclick="sendButton('Digit8');">8</span>
-                <span class="digit" onclick="sendButton('Digit9');">9</span>
-                <span class="digit" onclick="sendButton('Subtitle');">SUB</span>
-                <span class="digit" onclick="sendButton('Digit0');">0</span>
-                <span class="digit" onclick="sendButton('Online');">ASPC</span>
+                <span class="digit icon--rounded" onclick="sendButton(this, 'Digit1');">1</span>
+                <span class="digit icon--rounded" onclick="sendButton(this, 'Digit2');">2</span>
+                <span class="digit icon--rounded" onclick="sendButton(this, 'Digit3');">3</span>
+                <span class="digit icon--rounded" onclick="sendButton(this, 'Digit4');">4</span>
+                <span class="digit icon--rounded" onclick="sendButton(this, 'Digit5');">5</span>
+                <span class="digit icon--rounded" onclick="sendButton(this, 'Digit6');">6</span>
+                <span class="digit icon--rounded" onclick="sendButton(this, 'Digit7');">7</span>
+                <span class="digit icon--rounded" onclick="sendButton(this, 'Digit8');">8</span>
+                <span class="digit icon--rounded" onclick="sendButton(this, 'Digit9');">9</span>
+                <span class="digit icon--rounded" onclick="sendButton(this, 'Subtitle');">SUB</span>
+                <span class="digit icon--rounded" onclick="sendButton(this, 'Digit0');">0</span>
+                <span class="digit icon--rounded" onclick="sendButton(this, 'Online');">ASPC</span>
             </div>
-            <div class="icon-container" onclick="sendButton('Back');">
+            <div class="icon-container icon-container--small icon--rounded" onclick="sendButton(this, 'Back');">
                 <span class="icon--text">RETURN</span>
                 <img class="icon--margin" src="images/return.svg" />
             </div>
-            <div class="icon-container icon-container--bg icon-container--padding" onclick="sendButton('Standby');">
+            <div class="icon-container icon-container--bg icon-container--padding" onclick="sendButton(this, 'Standby');">
                 <span class="icon--text icon--red">SHUT DOWN</span>
                 <img class="icon--margin" src="images/shut-down.svg" />
             </div>
@@ -108,7 +103,6 @@
             </div>
         </div>
     </div>
-
     <script src="functions.js"></script>
 </body>
 

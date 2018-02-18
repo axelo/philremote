@@ -1,5 +1,5 @@
 
-var sendButton = function (button){
+var sendButton = function (element, button){
 
     var send = true;
 
@@ -13,8 +13,10 @@ var sendButton = function (button){
         return;
     }
 
-    fetch('api/remote/' + button).then(function(response){
+    element.classList.add('active-button');
 
+    fetch('api/remote/' + button).then(function(response){
+        element.classList.remove('active-button');
     })
 }
 

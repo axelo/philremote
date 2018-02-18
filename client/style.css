@@ -2,6 +2,7 @@
     -webkit-user-select: none;
     user-select: none;
     -webkit-touch-callout: none;
+    box-sizing: inherit;
 }
 
 html, 
@@ -81,7 +82,7 @@ body {
 }
 
 .digit {
-    margin: 20px 5px;
+    padding: 20px 5px;
     width: 80px;
 }
 
@@ -91,6 +92,35 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.icon-container--small {
+    margin: 0px auto;
+    padding: 10px;
+    width: 130px;
+}
+
+.icon-container--top {
+    height: 50px;
+}
+
+.icon--rounded {
+    border-radius: 25px;
+}
+
+.button--width {
+    margin: 0px;
+    padding: 10px;
+    width: 50%;
+}
+
+.flex--grow {
+    flex-grow: 1;
+    height: 100%;
+}
+
+.active-button {
+    background-color: rgba(211,211,211,0.5);
 }
 
 .icon-container--bg {
@@ -106,12 +136,10 @@ body {
 }
 
 .lower-icon-container {
-    padding: 10px 0px;
     flex-shrink: 0;
-}
-
-.button {
-    margin: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
 }
 
 .icon {
@@ -132,7 +160,7 @@ body {
 }
 
 .icon-container--flex {
-    justify-content: space-around;
+    justify-content: space-between;
 }
 
 .arrow-menu {
