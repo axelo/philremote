@@ -4,7 +4,6 @@ const path = require("path");
 const dns = require("dns");
 const os = require("os");
 const ssdp = require("node-ssdp");
-const debounce = require("lodash.debounce");
 
 const app = express();
 
@@ -58,29 +57,23 @@ const BUTTONS = [
 ];
 
 const BUTTON_SEQ_SEND_DELAY = 900;
-const SEARCH_TV_TIMEOUT = 1000;
+const SEARCH_TV_TIMEOUT = 5000;
 
 const searchForTvs = () =>
     new Promise(resolve => {
-        const address = {};
         const client = new ssdp.Client();
         const tvServerName = "IPI/1.0 UPnP/1.0 DLNADOC/1.50";
 
-        const done = debounce(() => {
-            resolve(Object.keys(address));
-        }, SEARCH_TV_TIMEOUT);
-
         client.on("response", (headers, _statusCode, rinfo) => {
             if (headers.SERVER === tvServerName) {
-                address[rinfo.address] = rinfo.address;
+                clearTimeout(timerId);
+                resolve(rinfo.address);
             }
-
-            done();
         });
 
         client.search("ssdp:all");
 
-        done();
+        const timerId = setTimeout(resolve, SEARCH_TV_TIMEOUT);
     });
 
 const sendButtonsToTv = (tvIpAddr, buttonIds) =>
@@ -111,17 +104,18 @@ const sendButtonToTv = (tvIpAddr, buttonId) =>
             });
     });
 
+const getTvIpAddress = () => knownTvIpAddress
+    ? Promise.resolve(knownTvIpAddress)
+    : searchForTvs().then(foundTvIp =>
+        knownTvIpAddress = foundTvIp || null
+    );
+
 const nocacheMiddleware = (req, res, next) => {
     res.header("Cache-Control", "private, no-cache, no-store, must-revalidate");
     res.header("Expires", "-1");
     res.header("Pragma", "no-cache");
     next();
 }
-
-searchForTvs().then(foundTvIps =>
-    knownTvIpAddress = foundTvIps.length > 0
-        ? foundTvIps[0]
-        : null);
 
 app.use("/", express.static(path.join(__dirname, "../../client")));
 
@@ -143,15 +137,7 @@ app.get("/api/remote/(:button)*", nocacheMiddleware, (req, res) => {
 
     const buttons = buttonIndices.map(i => BUTTONS[i]);
 
-    const getTvIpAddress = knownTvIpAddress
-        ? Promise.resolve(knownTvIpAddress)
-        : searchForTvs().then(foundTvIps =>
-            knownTvIpAddress = foundTvIps.length > 0
-                ? foundTvIps[0]
-                : null
-        );
-
-    getTvIpAddress.then(ipAddress => {
+    getTvIpAddress().then(ipAddress => {
         if (!ipAddress) {
             return res.status(503).send("No compatible tv available");
         }
