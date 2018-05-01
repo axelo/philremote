@@ -17,38 +17,38 @@
             <div class="icon-container icon-container--flex icon-container--bg icon-container--top">
                 <button class="button button--grey flex--grow" onclick="sendButton(this, 'WatchTV');">
                     <span class="icon--text">TV</span>
-                    <img class="icon--margin" src="images/tv.svg" />
+                    <img class="icon--margin" src="images/tv.svg" alt="tv icon"/>
                 </button>
                 <button class="button button--grey flex--grow" onclick="sendButton(this, 'Source');">
                     <span class="icon--text">SOURCE</span>
-                    <img class="icon--margin" src="images/input.svg" />
+                    <img class="icon--margin" src="images/input.svg" alt="input icon"/>
                 </button>
                 <button class="button button--grey flex--grow" onclick="sendButton(this, 'Home');">
                     <span class="icon--text">HOME</span>
-                    <img class="icon--margin" src="images/home.svg" />
+                    <img class="icon--margin" src="images/home.svg" alt="home icon"/>
                 </button>
             </div>
 
             <div class="arrow-menu">
                 <div class="icon-container">
-                    <button>
-                        <img class="icon icon--rounded" src="images/arrow-up.svg" onclick="sendButton(this, 'CursorUp');" />
+                    <button onclick="sendButton(this, 'CursorUp');">
+                        <img class="icon icon--rounded" src="images/arrow-up.svg" alt="click to go up" />
                     </button>
                 </div>
                 <div class="icon-container">
-                    <button>
-                        <img class="icon icon--rounded" src="images/arrow-left.svg" onclick="sendButton(this, 'CursorLeft');" />
+                    <button onclick="sendButton(this, 'CursorLeft');">
+                        <img class="icon icon--rounded" src="images/arrow-left.svg" alt="click to go down"/>
                     </button>
-                    <button>
-                        <span class="icon icon--margin icon--rounded" onclick="sendButton(this, 'Confirm');">OK</span>
+                    <button onclick="sendButton(this, 'Confirm');">
+                        <span class="icon icon--text icon--margin icon--rounded">OK</span>
                     </button>
-                    <button>
-                        <img class="icon icon--rounded" src="images/arrow-right.svg" onclick="sendButton(this, 'CursorRight');" />
+                    <button onclick="sendButton(this, 'CursorRight');">
+                        <img class="icon icon--rounded" src="images/arrow-right.svg" alt="click to go right"/>
                     </button>
                 </div>
                 <div class="icon-container">
-                    <button>
-                        <img class="icon icon--rounded" src="images/arrow-down.svg" onclick="sendButton(this, 'CursorDown');" />
+                    <button onclick="sendButton(this, 'CursorDown');">
+                        <img class="icon icon--rounded" src="images/arrow-down.svg" alt="click to go down"/>
                     </button>
                 </div>
             </div>
@@ -56,19 +56,19 @@
             <div class="lower-icon-container icon-container--bg">
                 <button class="button button--grey button--width" onclick="sendButton(this, 'WatchTV/Confirm/Home/CursorRight/CursorRight/CursorRight/Confirm');">
                     <span class="icon--text">GUIDE</span>
-                    <img class="icon--margin" src="images/guide.svg" />
+                    <img class="icon--margin" src="images/guide.svg" alt="library-icon"/>
                 </button>
                 <button class="button button--grey button--width" onclick="sendButton(this, 'Info');">
                     <span class="icon--text">INFO</span>
-                    <img class="icon--margin" src="images/info.svg" />
+                    <img class="icon--margin" src="images/info.svg" alt="info-icon"/>
                 </button>
                 <button class="button button--grey button--width" onclick="sendButton(this, 'ChannelStepDown');">
                     <span class="icon--text">CH</span>
-                    <img class="icon--margin" src="images/remove.svg" />
+                    <img class="icon--margin" src="images/remove.svg" alt="minus-icon"/>
                 </button>
                 <button class="button button--grey button--width" onclick="sendButton(this, 'ChannelStepUp');">
                     <span class="icon--text">CH</span>
-                    <img class="icon--margin" src="images/add.svg" />
+                    <img class="icon--margin" src="images/add.svg" alt="plus-icon"/>
                 </button>
             </div>
         </div>
@@ -96,20 +96,20 @@
             </div>
             <button class="icon-container icon-container--small icon--rounded" onclick="sendButton(this, 'Back');">
                 <span class="icon--text">RETURN</span>
-                <img class="icon--margin" src="images/return.svg" />
+                <img class="icon--margin" src="images/return.svg" alt="return arrow icon"/>
             </button>
             <button class="icon-container icon-container--bg icon-container--padding" onclick="sendButton(this, 'Standby');">
                 <span class="icon--text icon--red">SHUT DOWN</span>
-                <img class="icon--margin" src="images/shut-down.svg" />
+                <img class="icon--margin" src="images/shut-down.svg" alt="shutdown icon"/>
             </button>
         </div>
 
         <nav class="menu">
             <button class="menu__choice menu__choice--active" id="menu-view" onclick="selectView('menu-view');">
-                <img src="images/gamepad.svg" />
+                <img src="images/gamepad.svg" alt="gamepad icon"/>
             </button>
             <button class="menu__choice" id="digits-view" onclick="selectView('digits-view');">
-                <img src="images/dialpad.svg" />
+                <img src="images/dialpad.svg" alt="dialpad icon"/>
             </button>
         </nav>
     </main>
