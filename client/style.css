@@ -23,6 +23,18 @@ body {
             box-sizing: border-box;
 }
 
+button {
+    -webkit-appearance: none;
+    border: none;
+    background-color: transparent;
+    margin: 0px;
+}
+
+.button--grey {
+    background-color: rgba(211,211,211,0.5);
+    background-color: transparent;
+}
+
 #main-container {
     margin: 0px auto;
     height: 100%;
@@ -103,6 +115,7 @@ body {
 }
 
 .digit {
+    font-size: 1rem;
     padding: 20px 5px;
     width: 80px;
 }
