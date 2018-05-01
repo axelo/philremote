@@ -74,11 +74,11 @@
         </div>
 
         <div id="secondary-container">
-            <div class="color-btn-container icon-container--bg icon-container--height">
-                <button class="btn red-btn" onclick="sendButton(this, 'RedColour');"></button>
-                <button class="btn green-btn" onclick="sendButton(this, 'GreenColour');"></button>
-                <button class="btn yellow-btn" onclick="sendButton(this, 'YellowColour');"></button>
-                <button class="btn blue-btn" onclick="sendButton(this, 'BlueColour');"></button>
+            <div class="button--color-container icon-container--bg icon-container--height">
+                <button class="button--color button--color-red" onclick="sendButton(this, 'RedColour');"></button>
+                <button class="button--color button--color-green" onclick="sendButton(this, 'GreenColour');"></button>
+                <button class="button--color button--color-yellow" onclick="sendButton(this, 'YellowColour');"></button>
+                <button class="button--color button--color-blue" onclick="sendButton(this, 'BlueColour');"></button>
             </div>
             <div class="digits-container">
                 <button class="digit icon--rounded" onclick="sendButton(this, 'Digit1');">1</button>
@@ -104,11 +104,11 @@
             </button>
         </div>
 
-        <nav class="menu">
-            <button class="menu__choice menu__choice--active" id="menu-view" onclick="selectView('menu-view');">
+        <nav class="tab-menu">
+            <button class="tab-menu__choice tab-menu__choice--active" id="menu-view" onclick="selectView('menu-view');">
                 <img src="images/gamepad.svg" alt="gamepad icon"/>
             </button>
-            <button class="menu__choice" id="digits-view" onclick="selectView('digits-view');">
+            <button class="tab-menu__choice" id="digits-view" onclick="selectView('digits-view');">
                 <img src="images/dialpad.svg" alt="dialpad icon"/>
             </button>
         </nav>
