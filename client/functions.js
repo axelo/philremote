@@ -1,6 +1,6 @@
 
-var sendButton = function (element, button){
-    var send = true;
+const sendButton = (element, button) => {
+    const send = true;
 
     if (button === 'Standby'){
         if (!confirm('Do you really want to shut down?')) {
@@ -16,14 +16,14 @@ var sendButton = function (element, button){
 
     fetch('api/remote/' + button).then(function(response){
         element.classList.remove('active-button');
-    })
+    });
 }
 
-var selectView = function (view){
-    var mainContainer = document.getElementById('main-content');
-    var secondaryContainer = document.getElementById('secondary-container');
-    var menuView = document.getElementById('menu-view');
-    var digitsView = document.getElementById('digits-view');
+const selectView = view => {
+    const mainContainer = document.getElementById('main-content');
+    const secondaryContainer = document.getElementById('secondary-container');
+    const menuView = document.getElementById('menu-view');
+    const digitsView = document.getElementById('digits-view');
 
     if (view === 'menu-view'){
         mainContainer.style.display="flex";
