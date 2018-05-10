@@ -114,9 +114,13 @@ button {
 }
 
 .digit {
-    font-size: 1rem;
+    font-size: 1.3rem;
     padding: 20px 5px;
     width: 80px;
+}
+
+.digit--small {
+    font-size: 1rem;
 }
 
 .button,
@@ -199,7 +203,7 @@ button {
 }
 
 .icon--text {
-    font-size: 0.9rem;
+    font-size: 1rem;
 }
 
 .icon--red {

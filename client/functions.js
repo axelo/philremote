@@ -1,4 +1,3 @@
-
 const sendButton = (element, button) => {
     const send = true;
 
@@ -19,6 +18,20 @@ const sendButton = (element, button) => {
     });
 }
 
+const mainView = document.getElementById('main-container');
+const hammertime = new Hammer(mainView);
+
+hammertime.on('swipe', function(ev) {
+    
+    if (ev.direction === Hammer.DIRECTION_LEFT){
+        selectView('digits-view');
+    }
+    if (ev.direction === Hammer.DIRECTION_RIGHT){
+        selectView('menu-view');
+    }
+
+});
+
 const selectView = view => {
     const mainContainer = document.getElementById('main-content');
     const secondaryContainer = document.getElementById('secondary-container');
@@ -30,6 +43,8 @@ const selectView = view => {
         secondaryContainer.style.display="none";
         menuView.classList.add('tab-menu__choice--active');
         digitsView.classList.remove('tab-menu__choice--active');
+
+        hammertime.get('swipe').set({ direction: Hammer.DIRECTION_LEFT });
     }
     
     if (view === 'digits-view'){
@@ -37,5 +52,7 @@ const selectView = view => {
         mainContainer.style.display="none";
         digitsView.classList.add('tab-menu__choice--active');
         menuView.classList.remove('tab-menu__choice--active');
+
+        hammertime.get('swipe').set({ direction: Hammer.DIRECTION_RIGHT });
     }
 }
